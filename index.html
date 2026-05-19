@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CouncilData.ai — Public data, made useful for local government</title>
-  <meta name="description" content="Turn public local-government data into interactive dashboards, insights, and reports. Built for councils, analysts, journalists, researchers, consultants, and engaged communities." />
-  <meta property="og:title" content="CouncilData.ai" />
+  <title>CouncilData.ai — Central Coast Economic Intelligence</title>
+  <meta name="description" content="Economic intelligence tools for Central Coast Council — dashboards, reports, and data insights from public sources." />
+  <meta property="og:title" content="CouncilData.ai — Central Coast" />
   <meta property="og:description" content="Public data, made useful for local government." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://councildata.ai" />
@@ -20,7 +20,15 @@
       --accent-hover: #284e75;
       --highlight: #d4a017;
       --rule: #e5dfd0;
+
+      /* Card accent colours — simple → complex */
+      --c1: #4f8ef7;   /* Replit — KPIs & reports */
+      --c2: #16a085;   /* Insights email doc */
+      --c3: #1b3a5b;   /* Official council dashboard */
+      --c4: #7c3aed;   /* GitHub Pages visualisation */
+      --c5: #e05c2a;   /* Tableau detailed dashboards */
     }
+
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
@@ -31,10 +39,11 @@
       -webkit-font-smoothing: antialiased;
     }
     a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    a:hover { color: var(--accent-hover); }
 
+    /* ── HEADER ─────────────────────────────────────── */
     header.site {
-      padding: 1.25rem 1.5rem;
+      padding: 1.1rem 1.75rem;
       border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
@@ -50,201 +59,312 @@
     .site nav a {
       margin-left: 1.25rem;
       color: var(--ink-soft);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
+    /* ── HERO ───────────────────────────────────────── */
     .hero {
-      max-width: 920px;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 4rem 1.5rem 2.5rem;
-      text-align: left;
+      padding: 3.5rem 1.75rem 0.5rem;
+      text-align: center;
     }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin: 0 0 1.25rem;
-      font-weight: 800;
-    }
-    .hero h1 .accent { color: var(--accent); }
-    .hero p.lead {
-      font-size: 1.2rem;
-      color: var(--ink-soft);
-      max-width: 38em;
-      margin: 0 0 2rem;
-    }
-    .hero .audience {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--ink-soft);
-    }
-    .hero .audience span {
+    .hero .lga-badge {
+      display: inline-block;
       background: var(--paper-card);
       border: 1px solid var(--rule);
       border-radius: 999px;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
     }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+      margin: 0 0 1rem;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p.lead {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 36em;
+      margin: 0 auto 2rem;
+    }
+    .complexity-key {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      margin-bottom: 2.75rem;
+    }
+    .complexity-key .dot-row {
+      display: flex;
+      gap: 4px;
+    }
+    .complexity-key .dot-row span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--rule);
+    }
+    .complexity-key .dot-row span.filled { background: var(--accent); }
 
-    section.councils {
-      max-width: 1100px;
-      margin: 2rem auto 4rem;
-      padding: 0 1.5rem;
+    /* ── GRID ───────────────────────────────────────── */
+    .tools-section {
+      max-width: 1120px;
+      margin: 0 auto 4rem;
+      padding: 0 1.25rem;
     }
-    .section-title {
-      font-size: 0.85rem;
+    .section-label {
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink-soft);
-      margin: 0 0 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
+
+    /* Bottom row: centre 2 cards */
+    .grid-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      max-width: calc(((1120px - 1.25rem * 2) / 3) * 2 + 1.25rem);
+      margin: 1.25rem auto 0;
+    }
+
+    /* ── CARD ───────────────────────────────────────── */
     .card {
       background: var(--paper-card);
       border: 1px solid var(--rule);
+      border-top: 5px solid var(--c1);
       border-radius: 14px;
-      padding: 1.5rem;
+      padding: 1.75rem 1.6rem 1.5rem;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      text-decoration: none;
+      color: inherit;
     }
     .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(14, 26, 43, 0.08);
-      border-color: #cbd2dc;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(14, 26, 43, 0.09);
     }
-    .card h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1.25rem;
-      color: var(--ink);
-    }
-    .card .meta {
-      font-size: 0.85rem;
-      color: var(--ink-soft);
+    .card[data-c="1"] { border-top-color: var(--c1); }
+    .card[data-c="2"] { border-top-color: var(--c2); }
+    .card[data-c="3"] { border-top-color: var(--c3); }
+    .card[data-c="4"] { border-top-color: var(--c4); }
+    .card[data-c="5"] { border-top-color: var(--c5); }
+
+    .card-icon {
+      font-size: 2.4rem;
+      line-height: 1;
       margin-bottom: 1rem;
     }
-    .card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 0.3rem;
     }
-    .card li {
-      border-top: 1px solid var(--rule);
-      padding: 0.6rem 0;
+    .card-sub {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      margin: 0 0 1.1rem;
+      flex-grow: 1;
     }
-    .card li:first-child { border-top: none; }
-    .card li a {
+    .card-meta {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
+      margin-top: auto;
     }
-    .card li a .arrow {
-      color: var(--highlight);
-      transition: transform 0.15s ease;
-    }
-    .card li a:hover .arrow { transform: translateX(3px); }
-    .card li small {
-      display: block;
-      color: var(--ink-soft);
-      font-weight: 400;
-      font-size: 0.82rem;
-      margin-top: 0.15rem;
-    }
-
-    .card.placeholder {
-      background: transparent;
-      border-style: dashed;
+    .complexity-dots {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--ink-soft);
-      min-height: 200px;
-      font-style: italic;
+      gap: 4px;
     }
+    .complexity-dots span {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--rule);
+    }
+    .card[data-c="1"] .complexity-dots span.on { background: var(--c1); }
+    .card[data-c="2"] .complexity-dots span.on { background: var(--c2); }
+    .card[data-c="3"] .complexity-dots span.on { background: var(--c3); }
+    .card[data-c="4"] .complexity-dots span.on { background: var(--c4); }
+    .card[data-c="5"] .complexity-dots span.on { background: var(--c5); }
 
+    .card-btn {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 7px;
+      color: white;
+      background: var(--c1);
+      transition: opacity 0.15s;
+    }
+    .card:hover .card-btn { opacity: 0.88; }
+    .card[data-c="1"] .card-btn { background: var(--c1); }
+    .card[data-c="2"] .card-btn { background: var(--c2); }
+    .card[data-c="3"] .card-btn { background: var(--c3); }
+    .card[data-c="4"] .card-btn { background: var(--c4); }
+    .card[data-c="5"] .card-btn { background: var(--c5); }
+
+    /* Disabled state for placeholder links */
+    .card.pending {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .card.pending .card-btn::after { content: " (coming)"; font-weight: 400; }
+
+    /* ── FOOTER ─────────────────────────────────────── */
     footer.site {
       border-top: 1px solid var(--rule);
-      padding: 2rem 1.5rem;
+      padding: 1.75rem 1.5rem;
       text-align: center;
       color: var(--ink-soft);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
     footer.site a { color: var(--ink-soft); }
-    footer.site .built {
-      margin-top: 0.5rem;
-      font-size: 0.82rem;
+    footer.site .built { margin-top: 0.4rem; font-size: 0.78rem; }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-bottom { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+    }
+    @media (max-width: 520px) {
+      .grid, .grid-bottom { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
+
   <header class="site">
     <div class="brand">councildata<span class="dot">.</span>ai</div>
     <nav>
-      <a href="#councils">Councils</a>
+      <a href="https://www.centralcoast.nsw.gov.au">Council</a>
       <a href="https://seechange.com.au/contact/">Contact</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Public data, <span class="accent">made useful</span> for local government.</h1>
+      <div class="lga-badge">🏛️ Central Coast Council · NSW · LGA 11650</div>
+      <h1>Economic intelligence,<br><span class="accent">one place.</span></h1>
       <p class="lead">
-        Turn public local-government data into interactive dashboards, insights, and reports — built for councils, analysts, journalists, researchers, consultants, and engaged communities.
+        Five tools that turn public data into usable insights — from quick KPI snapshots
+        to deep-dive interactive dashboards. Ordered simplest to most complex.
       </p>
-      <div class="audience">
-        <span>Councils</span>
-        <span>Analysts</span>
-        <span>Journalists</span>
-        <span>Researchers</span>
-        <span>Consultants</span>
-        <span>Communities</span>
-      </div>
     </section>
 
-    <section id="councils" class="councils">
-      <h2 class="section-title">Available Councils</h2>
+    <section class="tools-section">
+      <p class="section-label">Tools &amp; resources</p>
+
+      <!-- Top row: 3 cards -->
       <div class="grid">
 
-        <article class="card">
-          <h3>Central Coast Council</h3>
-          <div class="meta">NSW · LGA 11650</div>
-          <ul>
-            <li>
-              <a href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650">
-                <span>Regional Indicators Dashboard
-                  <small>SA2-level interactive explorer</small>
-                </span>
-                <span class="arrow">→</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://data-visualizer-1-spedding.replit.app">
-                <span>Data Visualizer
-                  <small>Summary slides & reports</small>
-                </span>
-                <span class="arrow">→</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://public.tableau.com/app/profile/central.coast.council/vizzes">
-                <span>Tableau Dashboards
-                  <small>30+ official council vizzes</small>
-                </span>
-                <span class="arrow">→</span>
-              </a>
-            </li>
-          </ul>
-        </article>
+        <!-- 1. Replit — KPIs & Reports -->
+        <a class="card" data-c="1" href="https://data-visualizer-1-spedding.replit.app" target="_blank" rel="noopener">
+          <div class="card-icon">📊</div>
+          <div class="card-title">Economic KPIs &amp; Reports</div>
+          <div class="card-sub">
+            Quick-read KPI snapshots and summary slide reports. A fast starting point for
+            understanding Central Coast's economic position at a glance.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 1 of 5">
+              <span class="on"></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
 
-        <article class="card placeholder">
-          More councils coming soon
-        </article>
+        <!-- 2. Monthly insights doc — placeholder URL: update when hosted -->
+        <!-- TODO: Replace href="#" with the hosted link (Dropbox shared, GitHub, Google Drive, etc.) -->
+        <a class="card pending" data-c="2" href="#" target="_blank" rel="noopener">
+          <div class="card-icon">📄</div>
+          <div class="card-title">Economic Data Insights</div>
+          <div class="card-sub">
+            Monthly consolidated briefing: a structured Word/PDF document summarising
+            all data updates with a full table of contents — ready for Council distribution.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 2 of 5">
+              <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+            </div>
+            <span class="card-btn">Download →</span>
+          </div>
+        </a>
+
+        <!-- 3. Official Council economic dashboard -->
+        <a class="card" data-c="3" href="https://www.centralcoast.nsw.gov.au/central-coast-economic-dashboard" target="_blank" rel="noopener">
+          <div class="card-icon">🏛️</div>
+          <div class="card-title">Central Coast Economic Dashboard</div>
+          <div class="card-sub">
+            The official Council economic dashboard — publicly available on the Central
+            Coast Council website, maintained for community and stakeholder use.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 3 of 5">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Bottom row: 2 cards, centred -->
+      <div class="grid-bottom">
+
+        <!-- 4. GitHub Pages SA2 explorer -->
+        <a class="card" data-c="4" href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650" target="_blank" rel="noopener">
+          <div class="card-icon">🗺️</div>
+          <div class="card-title">Economic Analysis &amp; Data Visualisation</div>
+          <div class="card-sub">
+            SA2-level interactive regional explorer built on open data. Drill into
+            sub-regional trends, compare indicators across suburbs, and export charts.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 4 of 5">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
+
+        <!-- 5. Tableau Public — detailed dashboards by subject -->
+        <a class="card" data-c="5" href="https://public.tableau.com/app/profile/central.coast.council/vizzes" target="_blank" rel="noopener">
+          <div class="card-icon">📉</div>
+          <div class="card-title">Tableau Dashboards</div>
+          <div class="card-sub">
+            30+ detailed Tableau Public dashboards organised by subject area — labour
+            force, housing, planning, demographics, and more. Deep-dive analytics.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 5 of 5">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
 
       </div>
     </section>
