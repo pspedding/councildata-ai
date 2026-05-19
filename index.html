@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CouncilData.ai — Public data, made useful for local government</title>
+  <meta name="description" content="Turn public local-government data into interactive dashboards, insights, and reports. Built for councils, analysts, journalists, researchers, consultants, and engaged communities." />
+  <meta property="og:title" content="CouncilData.ai" />
+  <meta property="og:description" content="Public data, made useful for local government." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://councildata.ai" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231b3a5b'/%3E%3Ctext x='50' y='66' font-family='system-ui,sans-serif' font-size='56' font-weight='700' text-anchor='middle' fill='%23ffd75e'%3Ec%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ink: #0e1a2b;
+      --ink-soft: #3a4a5e;
+      --paper: #f7f5ee;
+      --paper-card: #ffffff;
+      --accent: #1b3a5b;
+      --accent-hover: #284e75;
+      --highlight: #d4a017;
+      --rule: #e5dfd0;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    header.site {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .brand .dot { color: var(--highlight); }
+    .site nav a {
+      margin-left: 1.25rem;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2.5rem;
+      text-align: left;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+      font-weight: 800;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p.lead {
+      font-size: 1.2rem;
+      color: var(--ink-soft);
+      max-width: 38em;
+      margin: 0 0 2rem;
+    }
+    .hero .audience {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+    .hero .audience span {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+    }
+
+    section.councils {
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0 0 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(14, 26, 43, 0.08);
+      border-color: #cbd2dc;
+    }
+    .card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1.25rem;
+      color: var(--ink);
+    }
+    .card .meta {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .card li {
+      border-top: 1px solid var(--rule);
+      padding: 0.6rem 0;
+    }
+    .card li:first-child { border-top: none; }
+    .card li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+    .card li a .arrow {
+      color: var(--highlight);
+      transition: transform 0.15s ease;
+    }
+    .card li a:hover .arrow { transform: translateX(3px); }
+    .card li small {
+      display: block;
+      color: var(--ink-soft);
+      font-weight: 400;
+      font-size: 0.82rem;
+      margin-top: 0.15rem;
+    }
+
+    .card.placeholder {
+      background: transparent;
+      border-style: dashed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--ink-soft);
+      min-height: 200px;
+      font-style: italic;
+    }
+
+    footer.site {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    footer.site a { color: var(--ink-soft); }
+    footer.site .built {
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="brand">councildata<span class="dot">.</span>ai</div>
+    <nav>
+      <a href="#councils">Councils</a>
+      <a href="https://seechange.com.au/contact/">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Public data, <span class="accent">made useful</span> for local government.</h1>
+      <p class="lead">
+        Turn public local-government data into interactive dashboards, insights, and reports — built for councils, analysts, journalists, researchers, consultants, and engaged communities.
+      </p>
+      <div class="audience">
+        <span>Councils</span>
+        <span>Analysts</span>
+        <span>Journalists</span>
+        <span>Researchers</span>
+        <span>Consultants</span>
+        <span>Communities</span>
+      </div>
+    </section>
+
+    <section id="councils" class="councils">
+      <h2 class="section-title">Available Councils</h2>
+      <div class="grid">
+
+        <article class="card">
+          <h3>Central Coast Council</h3>
+          <div class="meta">NSW · LGA 11650</div>
+          <ul>
+            <li>
+              <a href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650">
+                <span>Regional Indicators Dashboard
+                  <small>SA2-level interactive explorer</small>
+                </span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://data-visualizer-1-spedding.replit.app">
+                <span>Data Visualizer
+                  <small>Summary slides & reports</small>
+                </span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://public.tableau.com/app/profile/central.coast.council/vizzes">
+                <span>Tableau Dashboards
+                  <small>30+ official council vizzes</small>
+                </span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card placeholder">
+          More councils coming soon
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div>© <span id="year"></span> CouncilData.ai · A <a href="https://seechange.com.au">See-Change</a> initiative</div>
+    <div class="built">Hosted on GitHub Pages · Open data, open methods.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
