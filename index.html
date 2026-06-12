@@ -27,6 +27,7 @@
       --c3: #1b3a5b;   /* Official council dashboard */
       --c4: #7c3aed;   /* GitHub Pages visualisation */
       --c5: #e05c2a;   /* Tableau detailed dashboards */
+      --c6: #0e7490;   /* Business Intelligence explorer */
     }
 
     * { box-sizing: border-box; }
@@ -138,14 +139,8 @@
       gap: 1.25rem;
     }
 
-    /* Bottom row: centre 2 cards */
-    .grid-bottom {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      max-width: calc(((1120px - 1.25rem * 2) / 3) * 2 + 1.25rem);
-      margin: 1.25rem auto 0;
-    }
+    /* Bottom row spacing */
+    .grid + .grid { margin-top: 1.25rem; }
 
     /* ── CARD ───────────────────────────────────────── */
     .card {
@@ -169,6 +164,7 @@
     .card[data-c="3"] { border-top-color: var(--c3); }
     .card[data-c="4"] { border-top-color: var(--c4); }
     .card[data-c="5"] { border-top-color: var(--c5); }
+    .card[data-c="6"] { border-top-color: var(--c6); }
 
     .card-icon {
       font-size: 2.4rem;
@@ -208,6 +204,7 @@
     .card[data-c="3"] .complexity-dots span.on { background: var(--c3); }
     .card[data-c="4"] .complexity-dots span.on { background: var(--c4); }
     .card[data-c="5"] .complexity-dots span.on { background: var(--c5); }
+    .card[data-c="6"] .complexity-dots span.on { background: var(--c6); }
 
     .card-btn {
       font-size: 0.82rem;
@@ -224,6 +221,7 @@
     .card[data-c="3"] .card-btn { background: var(--c3); }
     .card[data-c="4"] .card-btn { background: var(--c4); }
     .card[data-c="5"] .card-btn { background: var(--c5); }
+    .card[data-c="6"] .card-btn { background: var(--c6); }
 
     /* Disabled state for placeholder links */
     .card.pending {
@@ -246,7 +244,7 @@
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 820px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-bottom { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+
     }
     @media (max-width: 520px) {
       .grid, .grid-bottom { grid-template-columns: 1fr; }
@@ -272,7 +270,7 @@
       <div class="lga-badge">🏛️ Central Coast Council · NSW · LGA 11650</div>
       <h1>Economic intelligence,<br><span class="accent">one place.</span></h1>
       <p class="lead">
-        Five tools that turn public data into usable insights — from quick KPI snapshots
+        Six tools that turn public data into usable insights — from quick KPI snapshots
         to deep-dive interactive dashboards. Ordered simplest to most complex.
       </p>
     </section>
@@ -337,8 +335,8 @@
 
       </div>
 
-      <!-- Bottom row: 2 cards, centred -->
-      <div class="grid-bottom">
+      <!-- Bottom row: 3 cards -->
+      <div class="grid">
 
         <!-- 4. GitHub Pages SA2 explorer -->
         <a class="card" data-c="4" href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650" target="_blank" rel="noopener">
@@ -367,6 +365,22 @@
           <div class="card-meta">
             <div class="complexity-dots" title="Complexity: 5 of 5">
               <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
+
+        <!-- 6. Business Intelligence explorer — Replit prototype -->
+        <a class="card" data-c="6" href="https://business-data-explorer.replit.app" target="_blank" rel="noopener">
+          <div class="card-icon">🏢</div>
+          <div class="card-title">Business Intelligence</div>
+          <div class="card-sub">
+            Explore Central Coast's business register — filter by industry, suburb, and
+            entity type across 30,000+ active ABN records. Prototype for council feedback.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 4 of 5">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span>
             </div>
             <span class="card-btn">Open →</span>
           </div>
