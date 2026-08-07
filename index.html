@@ -22,12 +22,14 @@
       --rule: #e5dfd0;
 
       /* Card accent colours — simple → complex */
-      --c1: #4f8ef7;   /* Replit — KPIs & reports */
-      --c2: #16a085;   /* Insights email doc */
-      --c3: #1b3a5b;   /* Official council dashboard */
-      --c4: #7c3aed;   /* GitHub Pages visualisation */
-      --c5: #e05c2a;   /* Tableau detailed dashboards */
-      --c6: #0e7490;   /* Business Intelligence explorer */
+      --c1: #1b3a5b;   /* Council Insights dashboard */
+      --c2: #4f8ef7;   /* Replit — KPIs & reports */
+      --c3: #16a085;   /* Insights email doc */
+      --c4: #2c7a4b;   /* Official council dashboard */
+      --c5: #7c3aed;   /* GitHub Pages visualisation */
+      --c6: #e05c2a;   /* Tableau detailed dashboards */
+      --c7: #b45309;   /* Property Market Intelligence */
+      --c8: #0e7490;   /* Business Intelligence explorer */
     }
 
     * { box-sizing: border-box; }
@@ -165,6 +167,8 @@
     .card[data-c="4"] { border-top-color: var(--c4); }
     .card[data-c="5"] { border-top-color: var(--c5); }
     .card[data-c="6"] { border-top-color: var(--c6); }
+    .card[data-c="7"] { border-top-color: var(--c7); }
+    .card[data-c="8"] { border-top-color: var(--c8); }
 
     .card-icon {
       font-size: 2.4rem;
@@ -205,6 +209,8 @@
     .card[data-c="4"] .complexity-dots span.on { background: var(--c4); }
     .card[data-c="5"] .complexity-dots span.on { background: var(--c5); }
     .card[data-c="6"] .complexity-dots span.on { background: var(--c6); }
+    .card[data-c="7"] .complexity-dots span.on { background: var(--c7); }
+    .card[data-c="8"] .complexity-dots span.on { background: var(--c8); }
 
     .card-btn {
       font-size: 0.82rem;
@@ -222,6 +228,8 @@
     .card[data-c="4"] .card-btn { background: var(--c4); }
     .card[data-c="5"] .card-btn { background: var(--c5); }
     .card[data-c="6"] .card-btn { background: var(--c6); }
+    .card[data-c="7"] .card-btn { background: var(--c7); }
+    .card[data-c="8"] .card-btn { background: var(--c8); }
 
     /* Disabled state for placeholder links */
     .card.pending {
@@ -270,7 +278,7 @@
       <div class="lga-badge">🏛️ Central Coast Council · NSW · LGA 11650</div>
       <h1>Economic intelligence,<br><span class="accent">one place.</span></h1>
       <p class="lead">
-        Six tools that turn public data into usable insights — from quick KPI snapshots
+        Eight tools that turn public data into usable insights — from quick KPI snapshots
         to deep-dive interactive dashboards. Ordered simplest to most complex.
       </p>
     </section>
@@ -278,16 +286,16 @@
     <section class="tools-section">
       <p class="section-label">Tools &amp; resources</p>
 
-      <!-- Top row: 3 cards -->
+      <!-- Row 1: 3 cards -->
       <div class="grid">
 
-        <!-- 1. Replit — KPIs & Reports -->
-        <a class="card" data-c="1" href="https://data-visualizer-1-spedding.replit.app" target="_blank" rel="noopener">
-          <div class="card-icon">📊</div>
-          <div class="card-title">Economic KPIs &amp; Reports</div>
+        <!-- 1. Council Key Economic Insights — Councillor Dashboard -->
+        <a class="card" data-c="1" href="https://public.tableau.com/app/profile/central.coast.council/viz/CouncillorDashboard/FrontPage" target="_blank" rel="noopener">
+          <div class="card-icon">🏛️</div>
+          <div class="card-title">Council Insights Report</div>
           <div class="card-sub">
-            Quick-read KPI snapshots and summary slide reports. A fast starting point for
-            understanding Central Coast's economic position at a glance.
+            Central Coast Council's Key Economic Insights dashboard — prepared for
+            Councillors and the public, covering headline economic indicators across the LGA.
           </div>
           <div class="card-meta">
             <div class="complexity-dots" title="Complexity: 1 of 5">
@@ -297,13 +305,29 @@
           </div>
         </a>
 
-        <!-- 2. Economic Data Insights — Replit snapshot + Council Data Updates PDF -->
-        <!-- UPDATE MONTHLY: change both hrefs below when new snapshot/PDF are published -->
-        <div class="card" data-c="2">
+        <!-- 2. Replit — KPIs & Reports -->
+        <a class="card" data-c="2" href="https://data-visualizer-1-spedding.replit.app" target="_blank" rel="noopener">
+          <div class="card-icon">📊</div>
+          <div class="card-title">Economic KPIs &amp; Reports</div>
+          <div class="card-sub">
+            Quick-read KPI snapshots and summary slide reports. A fast starting point for
+            understanding Central Coast's economic position at a glance.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 2 of 5">
+              <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+            </div>
+            <span class="card-btn">Open →</span>
+          </div>
+        </a>
+
+        <!-- 3. Economic Data Insights — Replit snapshot + Full Report -->
+        <!-- UPDATE MONTHLY: refresh /report via generate_report_html.py when new DOCX is produced -->
+        <div class="card" data-c="3">
           <div class="card-icon">📄</div>
           <div class="card-title">Economic Data Insights</div>
           <div class="card-sub">
-            Monthly economic briefings — an interactive May 2026 snapshot presentation,
+            Monthly economic briefings — an interactive snapshot presentation,
             plus the full structured data-updates report with source tables and trend analysis.
           </div>
           <div class="card-meta">
@@ -311,14 +335,19 @@
               <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
             </div>
             <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-              <a href="https://central-coast-insights.replit.app/economic-snapshot/" target="_blank" rel="noopener" class="card-btn" style="background:var(--c2)">Snapshot →</a>
-              <a href="/report" target="_blank" rel="noopener" class="card-btn" style="background:transparent;color:var(--c2);border:1.5px solid var(--c2)">Full Report →</a>
+              <a href="https://central-coast-insights.replit.app/economic-snapshot/" target="_blank" rel="noopener" class="card-btn" style="background:var(--c3)">Snapshot →</a>
+              <a href="/report" target="_blank" rel="noopener" class="card-btn" style="background:transparent;color:var(--c3);border:1.5px solid var(--c3)">Full Report →</a>
             </div>
           </div>
         </div>
 
-        <!-- 3. Official Council economic dashboard -->
-        <a class="card" data-c="3" href="https://www.centralcoast.nsw.gov.au/central-coast-economic-dashboard" target="_blank" rel="noopener">
+      </div>
+
+      <!-- Row 2: 3 cards -->
+      <div class="grid">
+
+        <!-- 4. Official Council economic dashboard -->
+        <a class="card" data-c="4" href="https://www.centralcoast.nsw.gov.au/central-coast-economic-dashboard" target="_blank" rel="noopener">
           <div class="card-icon">🏛️</div>
           <div class="card-title">Central Coast Economic Dashboard</div>
           <div class="card-sub">
@@ -333,13 +362,8 @@
           </div>
         </a>
 
-      </div>
-
-      <!-- Bottom row: 3 cards -->
-      <div class="grid">
-
-        <!-- 4. GitHub Pages SA2 explorer -->
-        <a class="card" data-c="4" href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650" target="_blank" rel="noopener">
+        <!-- 5. GitHub Pages SA2 explorer -->
+        <a class="card" data-c="5" href="https://pspedding.github.io/nsw-regional-dashboard-dev/?LGA=11650" target="_blank" rel="noopener">
           <div class="card-icon">🗺️</div>
           <div class="card-title">Economic Analysis &amp; Data Visualisation</div>
           <div class="card-sub">
@@ -354,8 +378,8 @@
           </div>
         </a>
 
-        <!-- 5. Tableau Public — detailed dashboards by subject -->
-        <a class="card" data-c="5" href="https://public.tableau.com/app/profile/central.coast.council/vizzes" target="_blank" rel="noopener">
+        <!-- 6. Tableau Public — detailed dashboards by subject -->
+        <a class="card" data-c="6" href="https://public.tableau.com/app/profile/central.coast.council/vizzes" target="_blank" rel="noopener">
           <div class="card-icon">📉</div>
           <div class="card-title">Tableau Dashboards</div>
           <div class="card-sub">
@@ -370,8 +394,33 @@
           </div>
         </a>
 
-        <!-- 6. Business Intelligence explorer — Replit prototype -->
-        <a class="card" data-c="6" href="https://business-data-explorer.replit.app" target="_blank" rel="noopener">
+      </div>
+
+      <!-- Row 3: 2 cards -->
+      <div class="grid">
+
+        <!-- 7. Property Market Intelligence -->
+        <div class="card" data-c="7">
+          <div class="card-icon">🏠</div>
+          <div class="card-title">Property Market Intelligence</div>
+          <div class="card-sub">
+            Monthly Central Coast property market analysis — an interactive summary
+            dashboard plus a detailed insights report covering price trends, suburb
+            performance, and market activity.
+          </div>
+          <div class="card-meta">
+            <div class="complexity-dots" title="Complexity: 3 of 5">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+            </div>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+              <a href="https://pspedding.github.io/reports/Property_Market_June_2026_Dashboard.html" target="_blank" rel="noopener" class="card-btn" style="background:var(--c7)">Snapshot →</a>
+              <a href="https://pspedding.github.io/reports/Property_Market_June_2026_Insights.pdf" target="_blank" rel="noopener" class="card-btn" style="background:transparent;color:var(--c7);border:1.5px solid var(--c7)">Full Report →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Business Intelligence explorer — Replit prototype -->
+        <a class="card" data-c="8" href="https://business-data-explorer.replit.app" target="_blank" rel="noopener">
           <div class="card-icon">🏢</div>
           <div class="card-title">Business Intelligence</div>
           <div class="card-sub">
